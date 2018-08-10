@@ -224,8 +224,12 @@ def SetupBoard(pos):
         value = DB[str(root[nextMove])][0]
         # print(value)
         if IF_VALUE.get():  # revise
-            c.itemconfig(lines[m], fill=PredictColor(
-                value), width=DB[str(root[nextMove])][1] if value == WIN else 15 - DB[str(root[nextMove])][1])
+            if DB[str(root[nextMove])][0] == 0:
+                c.itemconfig(lines[m], fill=PredictColor(
+                    value), width=DB[str(root[nextMove])][1])
+            else:
+                c.itemconfig(lines[m], fill=PredictColor(
+                    value), width=10 - DB[str(root[nextMove])][1])                
             L_COLOR[str(m)] = PredictColor(value)
         else:
             c.itemconfig(lines[m], fill='black', width=10)
